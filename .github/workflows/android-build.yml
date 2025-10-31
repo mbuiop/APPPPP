@@ -1,0 +1,121 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pygame==2.5.1
+        pip install buildozer
+        sudo apt-get update
+        sudo apt-get install -y git autoconf automake libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
+        pip install cython==0.29.33
+        
+    - name: Build Android APK with Buildozer
+      run: |
+        echo "Initializing Buildozer android project..."
+        buildozer init
+        echo "Building APK..."
+        buildozer -v android debug
+        echo "APK build completed!"
+        
+    - name: Upload APK artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: math-flag-game-apk
+        path: bin/*.apk
+        retention-days: 30
+        
+    - name: Upload build logs
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-logs
+        path: .buildozer/
+        retention-days: 15
+
+  test-python:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
+    - name: Test Python code
+      run: |
+        pip install pygame==2.5.1
+        python -c "
+import sys
+try:
+    import pygame
+    import math
+    import random
+    print('✅ All imports successful!')
+    print('✅ Python version:', sys.version)
+    sys.exit(0)
+except ImportError as e:
+    print(f'❌ Import error: {e}')
+    sys.exit(1)
+        "
+        
+    - name: Syntax check
+      run: |
+        python -m py_compile math_flag_game.py
+        echo "✅ Syntax check passed!"
+
+  deploy:
+    needs: [build-android, test-python]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    
+    steps:
+    - name: Download APK artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: math-flag-game-apk
+        
+    - name: Display APK info
+      run: |
+        echo "📱 Math Flag Challenge APK Build Complete!"
+        echo "🔹 Commit: ${{ github.sha }}"
+        echo "🔹 Branch: ${{ github.ref }}"
+        echo "🔹 APK Files:"
+        ls -la *.apk || echo "No APK files found"
+        
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: *.apk
+        body: |
+          Math Flag Challenge Android APK
+          
+          🎮 Features:
+          - 100 Country Flags
+          - Professional Math Questions
+          - Beautiful Visual Effects
+          - Score System
+          
+          Built automatically via GitHub Actions
