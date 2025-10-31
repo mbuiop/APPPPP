@@ -35,9 +35,7 @@ jobs:
     - name: Create APK build script
       run: |
         cat > build_apk.py << 'EOF'
-import os
-import subprocess
-import sys
+
 
 def run_command(cmd):
     try:
