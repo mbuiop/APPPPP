@@ -179,6 +179,81 @@
             font-size: 1rem;
         }
         
+        /* بخش اطلاعات بانکی */
+        .bank-info-box {
+            background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .bank-info-box h2 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .bank-info-box h2 i {
+            margin-left: 10px;
+        }
+        
+        .bank-details {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 10px;
+            direction: ltr;
+            text-align: center;
+        }
+        
+        .card-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .card-number:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .card-owner {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        
+        .copy-btn {
+            background: white;
+            color: #1565c0;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px auto 0;
+        }
+        
+        .copy-btn:hover {
+            background: #e3f2fd;
+            transform: translateY(-2px);
+        }
+        
+        .copy-btn i {
+            margin-left: 5px;
+        }
+        
         /* بخش قیمت */
         .price-box {
             text-align: center;
@@ -356,7 +431,7 @@
             padding: 20px;
             border-radius: 15px;
             margin-top: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 70px;
         }
         
         .footer-text {
@@ -412,7 +487,28 @@
         
         /* برای جلوگیری از زوم */
         input, textarea, select {
-            font-size: 16px; /* جلوگیری از زوم در آیفون */
+            font-size: 16px;
+        }
+        
+        /* پیام کپی موفق */
+        .copy-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 2000;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+        
+        .copy-message.show {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -425,30 +521,25 @@
                     <i class="fas fa-mobile-alt"></i>
                 </div>
                 <div>
-                    <h1>تبدیل سایت به اپلیکیشن</h1>
+                    <h1>تبدیل سایت به اپلیکیشن اندروید</h1>
                     <p class="tagline">سایت اپلیکیشن ساز - با تکنولوژی روز</p>
                 </div>
             </div>
             
             <p style="font-size: 0.9rem; margin-bottom: 15px;">
-                اگر می‌خواهید سایت خود را به اپلیکیشن تبدیل کنید، روی دکمه زیر کلیک کنید:
+                سایت خود را به اپلیکیشن اندروید تبدیل کنید
             </p>
-            
-            <a href="https://t.me/Mortzayar" class="telegram-main-btn" target="_blank">
-                <i class="fab fa-telegram-plane"></i>
-                ارتباط در تلگرام: @Mortzayar
-            </a>
         </header>
         
         <!-- توضیحات اصلی -->
         <section class="explanation-box">
             <h2><i class="fas fa-info-circle"></i> توضیحات کامل خدمات</h2>
             <p>
-                ما سایت شما را به <span class="highlight">اپلیکیشن اندروید و iOS</span> تبدیل می‌کنیم. 
+                ما سایت شما را به <span class="highlight">اپلیکیشن اندروید</span> تبدیل می‌کنیم. 
                 اپلیکیشن ساخته شده کاملاً حرفه‌ای، بدون خطا و با بهترین تکنولوژی روز خواهد بود.
             </p>
             <p>
-                پس از ساخت، اپلیکیشن شما قابلیت انتشار در <span class="highlight">گوگل پلی، بازار، مایکت</span> و تمام فروشگاه‌های معتبر را دارد.
+                پس از ساخت، اپلیکیشن شما قابلیت انتشار در <span class="highlight">گوگل پلی، بازار، مایکت</span> و تمام فروشگاه‌های معتبر اندروید را دارد.
             </p>
             <p>
                 اپلیکیشن ساخته شده از سایت شما <span class="highlight">به‌طور خودکار آپدیت</span> می‌شود. یعنی هر تغییری در سایت ایجاد کنید، بلافاصله در اپلیکیشن نیز اعمال می‌شود.
@@ -469,6 +560,30 @@
                 <li><i class="fas fa-user-tie"></i> <strong>مشخصات تماس:</strong> نام، شماره تماس، آیدی تلگرام</li>
                 <li><i class="fas fa-palette"></i> <strong>رنگ‌بندی (اختیاری):</strong> اگر رنگ خاصی مدنظر دارید</li>
             </ul>
+        </section>
+        
+        <!-- اطلاعات بانکی -->
+        <section class="bank-info-box">
+            <h2><i class="fas fa-credit-card"></i> اطلاعات حساب بانکی برای واریز</h2>
+            <p style="margin-bottom: 15px; text-align: center; font-size: 0.95rem;">
+                لطفاً مبلغ <strong>۲۰۰,۰۰۰ تومان</strong> را به حساب زیر واریز کنید:
+            </p>
+            
+            <div class="bank-details">
+                <div class="card-number" id="cardNumber">
+                    5892 1011 8732 2777
+                </div>
+                <div class="card-owner">
+                    به نام: مرتضی نیکخو خنجری
+                </div>
+                <button class="copy-btn" id="copyCardBtn">
+                    <i class="far fa-copy"></i> کپی شماره کارت
+                </button>
+            </div>
+            
+            <p style="margin-top: 15px; font-size: 0.85rem; text-align: center; opacity: 0.9;">
+                پس از واریز، تصویر فیش را از طریق تلگرام ارسال کنید
+            </p>
         </section>
         
         <!-- بخش قیمت -->
@@ -506,13 +621,15 @@
             <h2><i class="fas fa-star"></i> مزایای اپلیکیشن ساخته شده</h2>
             <ul class="benefit-list">
                 <li><i class="fas fa-check-circle"></i> طراحی شده با جدیدترین تکنولوژی‌های روز</li>
-                <li><i class="fas fa-check-circle"></i> کاملاً واکنش‌گرا و سازگار با تمام گوشی‌ها</li>
+                <li><i class="fas fa-check-circle"></i> کاملاً واکنش‌گرا و سازگار با تمام گوشی‌های اندروید</li>
                 <li><i class="fas fa-check-circle"></i> سرعت بارگذاری فوق‌العاده بالا</li>
                 <li><i class="fas fa-check-circle"></i> بدون خطا، باگ یا هنگ کردن</li>
                 <li><i class="fas fa-check-circle"></i> قابلیت ارسال نوتیفیکیشن (اعلان)</li>
                 <li><i class="fas fa-check-circle"></i> امکان اضافه کردن منوهای اختصاصی</li>
                 <li><i class="fas fa-check-circle"></i> آپدیت خودکار با آپدیت سایت</li>
                 <li><i class="fas fa-check-circle"></i> پشتیبانی از تمام فرم‌ها و دکمه‌های سایت</li>
+                <li><i class="fas fa-check-circle"></i> قابلیت انتشار در تمام فروشگاه‌های اندروید</li>
+                <li><i class="fas fa-check-circle"></i> گارانتی و پشتیبانی ۶ ماهه رایگان</li>
             </ul>
         </section>
         
@@ -550,7 +667,8 @@
                 ۲. پرداخت فقط از طریق واریز به حساب بانکی انجام می‌شود.<br>
                 ۳. پس از پرداخت، تصویر فیش را ارسال کنید.<br>
                 ۴. پروژه پس از تایید پرداخت آغاز می‌شود.<br>
-                ۵. فایل نهایی اپلیکیشن (APK) برای شما ارسال می‌شود.
+                ۵. فایل نهایی اپلیکیشن (APK) برای شما ارسال می‌شود.<br>
+                ۶. اپلیکیشن فقط برای سیستم عامل اندروید ساخته می‌شود.
             </p>
         </section>
         
@@ -558,19 +676,22 @@
         <section class="explanation-box" style="border-right-color: #9c27b0;">
             <h2><i class="fas fa-list-ol"></i> مراحل انجام کار</h2>
             <p>
-                <strong>مرحله ۱:</strong> ارسال لینک سایت، آیکون و نام مورد نظر از طریق تلگرام
+                <strong>مرحله ۱:</strong> واریز مبلغ ۲۰۰,۰۰۰ تومان به شماره کارت بالا
             </p>
             <p>
-                <strong>مرحله ۲:</strong> واریز مبلغ ۲۰۰,۰۰۰ تومان و ارسال فیش پرداخت
+                <strong>مرحله ۲:</strong> ارسال لینک سایت، آیکون، نام مورد نظر و فیش پرداخت
             </p>
             <p>
                 <strong>مرحله ۳:</strong> تایید پرداخت و شروع فرآیند تبدیل توسط تیم فنی
             </p>
             <p>
-                <strong>مرحله ۴:</strong تست اپلیکیشن توسط شما (ارسال نسخه آزمایشی)
+                <strong>مرحله ۴:</strong> تست اپلیکیشن توسط شما (ارسال نسخه آزمایشی)
             </p>
             <p>
                 <strong>مرحله ۵:</strong> دریافت فایل نهایی اپلیکیشن (APK) و راهنمای انتشار
+            </p>
+            <p>
+                <strong>مرحله ۶:</strong> پشتیبانی ۶ ماهه رایگان برای رفع هرگونه مشکل
             </p>
         </section>
         
@@ -578,18 +699,22 @@
         <footer>
             <div class="footer-text">
                 <p><i class="fas fa-mobile-alt"></i> <strong>سایت اپلیکیشن ساز</strong></p>
-                <p>تبدیل حرفه‌ای سایت به اپلیکیشن اندروید و iOS</p>
-                <p>قابل انتشار در تمام فروشگاه‌های معتبر</p>
+                <p>تبدیل حرفه‌ای سایت به اپلیکیشن اندروید</p>
+                <p>قابل انتشار در تمام فروشگاه‌های معتبر اندروید</p>
             </div>
             
-            <p style="margin: 15px 0;">
-                برای سفارش یا مشاوره، روی دکمه تلگرام کلیک کنید:
+            <p style="margin: 15px 0; font-size: 0.95rem;">
+                برای سفارش یا مشاوره، به آیدی زیر در تلگرام پیام دهید:
             </p>
             
-            <a href="https://t.me/Mortzayar" class="telegram-main-btn" target="_blank" style="width: 95%;">
-                <i class="fab fa-telegram-plane"></i>
-                @Mortzayar - ارتباط در تلگرام
-            </a>
+            <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin: 15px 0;">
+                <p style="font-size: 1.1rem; font-weight: bold; letter-spacing: 1px;">
+                    @Mortzayar
+                </p>
+                <p style="font-size: 0.85rem; opacity: 0.9;">
+                    آیدی تلگرام برای ارتباط
+                </p>
+            </div>
             
             <div class="copyright">
                 <i class="far fa-copyright"></i> کلیه حقوق این سرویس محفوظ می‌باشد - ۱۴۰۳
@@ -599,8 +724,13 @@
         <!-- دکمه ثابت تلگرام -->
         <a href="https://t.me/Mortzayar" class="telegram-fixed-btn" target="_blank">
             <i class="fab fa-telegram-plane"></i>
-            سفارش تبدیل سایت به اپلیکیشن
+            ارتباط در تلگرام: @Mortzayar
         </a>
+        
+        <!-- پیام کپی موفق -->
+        <div class="copy-message" id="copyMessage">
+            <i class="fas fa-check-circle"></i> شماره کارت کپی شد!
+        </div>
     </div>
 
     <script>
@@ -660,7 +790,7 @@
         }, observerOptions);
         
         // اعمال افکت روی تمام بخش‌ها
-        document.querySelectorAll('.explanation-box, .requirements-box, .price-box, .delivery-box, .benefits-box, .samples-box, .warning-box').forEach(section => {
+        document.querySelectorAll('.explanation-box, .requirements-box, .bank-info-box, .price-box, .delivery-box, .benefits-box, .samples-box, .warning-box').forEach(section => {
             section.style.opacity = '0';
             section.style.transform = 'translateY(20px)';
             section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
@@ -671,10 +801,87 @@
         document.querySelectorAll('a[href*="t.me"]').forEach(link => {
             link.addEventListener('click', function() {
                 if(navigator.vibrate) {
-                    navigator.vibrate(50); // ویبره کوتاه برای گوشی‌های دارای قابلیت ویبره
+                    navigator.vibrate(50);
                 }
             });
         });
+
+        // کپی شماره کارت
+        const cardNumber = document.getElementById('cardNumber');
+        const copyCardBtn = document.getElementById('copyCardBtn');
+        const copyMessage = document.getElementById('copyMessage');
+        
+        copyCardBtn.addEventListener('click', function() {
+            const textToCopy = '5892101187322777';
+            
+            // استفاده از Clipboard API جدید
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(textToCopy)
+                    .then(() => {
+                        showCopyMessage();
+                    })
+                    .catch(err => {
+                        console.error('خطا در کپی کردن: ', err);
+                        fallbackCopyTextToClipboard(textToCopy);
+                    });
+            } else {
+                // روش fallback برای مرورگرهای قدیمی
+                fallbackCopyTextToClipboard(textToCopy);
+            }
+        });
+        
+        // همچنین امکان کپی با کلیک روی شماره کارت
+        cardNumber.addEventListener('click', function() {
+            const textToCopy = '5892101187322777';
+            
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(textToCopy)
+                    .then(() => {
+                        showCopyMessage();
+                    })
+                    .catch(err => {
+                        console.error('خطا در کپی کردن: ', err);
+                        fallbackCopyTextToClipboard(textToCopy);
+                    });
+            } else {
+                fallbackCopyTextToClipboard(textToCopy);
+            }
+        });
+        
+        function fallbackCopyTextToClipboard(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.opacity = '0';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showCopyMessage();
+                }
+            } catch (err) {
+                console.error('خطا در کپی کردن: ', err);
+                alert('لطفاً شماره کارت را دستی کپی کنید: ' + text);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+        
+        function showCopyMessage() {
+            copyMessage.classList.add('show');
+            
+            // ویبره اگر پشتیبانی شود
+            if (navigator.vibrate) {
+                navigator.vibrate(100);
+            }
+            
+            setTimeout(() => {
+                copyMessage.classList.remove('show');
+            }, 2000);
+        }
     </script>
 </body>
 </html>
